@@ -13,12 +13,23 @@
     <android.sdk.platform>17</android.sdk.platform>
     <android.maven.plugin.version>3.6.0</android.maven.plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <repo.id>zauber-android</repo.id>
+    <repo.url>https://repo1.zauberlabs.com/content/repositories/zauber-android-release/</repo.url>
   </properties>
 
   <modules>
     <module>pdfdeps</module>
     <module>pdfviewer</module>
   </modules>
+
+  <distributionManagement>
+    <repository>
+      <id>${repo.id}</id>
+      <name>Zauber Android</name>
+      <url>${repo.url}</url>
+    </repository>
+  </distributionManagement>
 
   <dependencyManagement>
     <dependencies>
@@ -68,4 +79,18 @@
     </dependencies>
   </dependencyManagement>
 
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.4</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>2.7</version>
+      </plugin>
+    </plugins>
+  </build>
 </project>

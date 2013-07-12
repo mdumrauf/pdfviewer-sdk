@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.radaee.reader</groupId>
+    <artifactId>pdfviewer-parent</artifactId>
+    <version>2.9.1</version>
+  </parent>
+
+  <artifactId>pdfdeps</artifactId>
+  <packaging>pom</packaging>
+  <name>PDF Viewer Explicit Dependencies</name>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-install-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>pdfex_view</id>
+            <phase>install</phase>
+            <goals>
+              <goal>install-file</goal>
+            </goals>
+            <configuration>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>pdfex_view</artifactId>
+              <packaging>jar</packaging>
+              <version>${project.version}</version>
+              <file>libs/com.radaee.pdfex_view.jar</file>
+            </configuration>
+          </execution>
+          <execution>
+            <id>armeabi</id>
+            <phase>install</phase>
+            <goals>
+              <goal>install-file</goal>
+            </goals>
+            <configuration>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>librdpdf</artifactId>
+              <packaging>so</packaging>
+              <version>${project.version}</version>
+              <classifier>armeabi</classifier>
+              <file>libs/armeabi/librdpdf.so</file>
+            </configuration>
+          </execution>
+          <execution>
+            <id>armeabi-v7a</id>
+            <phase>install</phase>
+            <goals>
+              <goal>install-file</goal>
+            </goals>
+            <configuration>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>librdpdf</artifactId>
+              <packaging>so</packaging>
+              <version>${project.version}</version>
+              <classifier>armeabi-v7a</classifier>
+              <file>libs/armeabi-v7a/librdpdf.so</file>
+            </configuration>
+          </execution>
+          <execution>
+            <id>mips</id>
+            <phase>install</phase>
+            <goals>
+              <goal>install-file</goal>
+            </goals>
+            <configuration>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>librdpdf</artifactId>
+              <packaging>so</packaging>
+              <version>${project.version}</version>
+              <classifier>mips</classifier>
+              <file>libs/mips/librdpdf.so</file>
+            </configuration>
+          </execution>
+          <execution>
+            <id>x86</id>
+            <phase>install</phase>
+            <goals>
+              <goal>install-file</goal>
+            </goals>
+            <configuration>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>librdpdf</artifactId>
+              <packaging>so</packaging>
+              <version>${project.version}</version>
+              <classifier>x86</classifier>
+              <file>libs/x86/librdpdf.so</file>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

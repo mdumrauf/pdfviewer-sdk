@@ -20,6 +20,14 @@
     <module>pdfviewer</module>
   </modules>
 
+  <distributionManagement>
+    <repository>
+      <id>${repo.id}</id>
+      <name>${repo.name}</name>
+      <url>${repo.url}</url>
+    </repository>
+  </distributionManagement>
+
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -68,4 +76,18 @@
     </dependencies>
   </dependencyManagement>
 
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.4</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>2.7</version>
+      </plugin>
+    </plugins>
+  </build>
 </project>

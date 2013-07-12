@@ -1,0 +1,490 @@
+PDFViewer SDK for Android - Release notes
+
+2.9.1
+native library
+- FIX issue in text fields editing.
+- FIX trasparent issue with biometrical signatures.
+- FIX an issue with PDFVThumb.
+- FIX some minor bugs. 
+
+2.9.1beta2
+native library
+- NEW now can get/set line width for edit-box border.
+- NEW now can get/set line width for polygon/polyline annotation.
+- ENHANCED java-doc updated.
+
+2.9.1beta1
+native library
+- NEW strok color and fill color can be applied to stick-text, ployline, ploygon annotations.
+- NEW create appearence when annotations without appearence stream include some type of stamp appearence, polygon, ployline, sticky-text, line annotations.
+- FIX a bug when two annotations in same location, get the top annotation from point.
+- FIX some minor bugs. 
+
+2.9.0
+native library
+- FIX a minor bug in font creating.
+- FIX a null pointer exception in page curl effect.
+- FIX a minor issue for japanese encoding (a special PDF file with wrong font data).
+- FIX bugs reported by users
+
+2.9.0beta3
+native library
+- FIX issues with undisplayed signatures in some PDFs.
+- FIX adjustment for method PDFGotoPage.
+- FIX fixed coordinate error for sticky text notes in some rotated pages.
+
+2.9.0beta2
+native library
+- FIX minor issue while change view style.
+
+2.9.0beta1
+native library
+- NEW support of edit and save of encrypted PDF document.
+
+2.8.4beta2
+native library
+- ENHANCED rename PageContent.textSetPos() to PageContent.textMove(), with java-doc updated.
+- FIX UI issue in PDFReader.PDFGotoPage()
+- FIX fixed issue Document.Font GetAscent() and GetDescent() return 0.
+- FIX solve issue in saveas in case of PDF with signature.
+
+2.8.4beta1
+native library
+- FIX endless loop in PageContent.DrawText().
+- FIX a minor bug in extract texts in XObject(form)
+
+2.8.3
+native library
+- FIX minor problem during loading of some PDFs. 
+
+2.8.3beta7
+native library
+- FIX definitive rtol support. 
+
+2.8.3beta6
+- NEW rtol support for Arabic and Persian charset. Not definitive
+
+2.8.3beta5
+native library
+- FIX minor Chinese character encoding
+
+2.8.3beta4
+native library
+- FIX minor bugs 
+
+2.8.3beta3
+native library
+- FIX GetAnnotationCount() wasn't available with Professional key
+
+pdfex/view
+- NEW RtL scrolling for both PDFViewHorz and PDFViewDual
+- FIX some memory leaks during thumbnail rendering
+
+2.8.3beta2
+native library
+- NEW create PDF Document - Premium
+- NEW create empty page in actual PDF Document - Premium
+- NEW remove page from actual PDF Document - Premium
+- NEW create/remove outlines - Premium
+- UPDATE JNI classes update in many aspect
+- NEW activeStandardTitanium(), activeProfessionalTitanium(), activePremiumTitanium() interface for coming Appcelerator Titanium module. That method will be internally used by the module itself.
+
+pdfex/view
+- FIX some UI and support OnPDFPageDisplayed call back
+
+PDFReader demo
+- NEW PDFTestAct shows how to create a new PDF file
+
+2.8.3beta1
+native library
+
+- NEW write glyphs on page. (stroke/fill/clip)
+
+- NEW write image on page.
+
+
+
+PDFV
+- FIX some bugs fixing
+
+View
+- FIX better UI rendering during display rotation
+
+2.8.0
+native library
+- FIX some graphic glitches in UI
+
+- FIX support of Nexus10 and other high screen devices
+- FIX coordinates for straight line annotation
+- FIX multimedia annotation decoding
+- FIX JPX decoding issue
+- FIX rendering of some transparencies with gradient
+- FIX bugs for edittext annotation in CJK language.
+- FIX minor bugs in Document.openMem()
+- FIX minor bugs for Oval annotation
+- FIX line rendering follow the line begin and end style 
+- FIX minor bugs during search
+
+pdfex
+- NEW PDFThumbView class, developers can customize colors now.
+- ENHANCED some UI aspects
+
+grid interface
+- NEW the grid file requester has its own class
+- FIX Optimization open and close view (PDFGridView)
+
+view interface
+- NEW view interface - same as pdfex, better zoom/move performances. Curve page effect/reflow are not supported, using PDFReaderOld for these feature.
+- NEW interface for PDFViewDual to center pages on screen.
+- FIX memory leak during zooming
+- FIX memory leaks
+
+PDFReader demo
+- NEW adopt new View classes for vertical/horizontal/single/dual layout.
+- NEW function for ellipse/text note.
+
+2.7.3
+
+native library 
+
+- FIX resolved some issue on ps type3 fonts handling
+
+
+
+2.7.3 beta2
+
+native library
+
+- NEW get/set interface highlight/strikeout/underline annotation colors
+
+- FIX minor bugs in highlight annotation interface
+
+- FIX minor graphic errors
+
+
+
+2.7.3 beta1
+
+native library
+
+- NEW interface to get/set rectangular/elliptic annotation parameters (stroke color, fill color, line width)
+
+- NEW interface to get/set patch structure from ink annotation
+
+- FIX minor bugs during square/elliptic annotation creation
+
+- FIX minor bugs during ink annotation creation
+
+
+
+2.7.2
+
+native library
+
+- NEW square and ellipse annotation can accept filling colors not only stroke
+
+- FIX skipping PDF commands if have wrong syntax or bad parameters
+
+- FIX Page.addBitmap was causing data lost in some circumstances
+
+
+
+2.7.1b
+native library
+
+- FIX minor rendering issue
+
+
+
+2.7.1
+
+native library
+
+- FIX crash during Document.OpenStream
+
+- FIX better encryption version 4
+
+- FIX corrected some minor rendering issues
+
+
+
+2.7.0
+
+native library
+
+- NEW Page.AddGlyph interface
+
+- NEW Page.AddStroke interface
+
+- FIX annotation won't corrupt anymore PDF signature
+
+- FIX reflow interface was crashing
+
+- FIX file with the PDF header not at the begin of file now opens 
+
+
+
+2.6.2
+
+native library
+
+- NEW interface to get permissions status from catalog
+
+- FIX highlight annotation and rect annotation now are compatible with MacOSX Preview
+
+- FIX marketing PDF from Apple website are opening correctly
+
+- FIX improved CMYK support within transparent group
+
+- FIX some minor fixes
+
+
+
+pdfex wrapper
+
+- NEW interface to open PDF from stream
+
+
+2.6.0b
+pdfex wrapper
+- FIX Dual page mode was crashing if zooming on a single page
+
+2.6
+native library
+- NEW ellipse annotation interface
+- FIX bug on opening encrypted PDF1.7 ext3 file
+- FIX fixed some minor graphic issues
+
+2.5.2
+native library
+- FIX generic bug fixing and optimization
+
+pdfex wrapper
+- NEW double tap event will handle zoom in
+- NEW added a new parameter to viewSetRatio: wait_finish 
+
+2.5.1b
+pdfex wrapper
+-FIX uncaught exception during zoom and rotation within the new booklet rendering
+
+2.5.1
+native library
+- FIX saved PDF wasn't readable by some third part reader (i.e.: Google Chrome PDF rendering engine)
+
+pdfex wrapper
+- NEW introduced the new def_mode = 6 that renders pages in booklet way (two page side by side)
+
+2.4.6
+native library
+- NEW improved hyperlink management with Page.AddAnnotGoto and Page.AddAnnotURI
+- NEW interface to add bitmap as part of a page (not as annotation)
+- FIX bug on PDFReaderAct.str_find that wasn't closed correctly during PDF file change
+
+pdfex wrapper
+- FIX page change in document with mixed orientation (both portrait and landscape) was hanging the rendering class with def_mode = 3
+- FIX improved rendering quality: some images was cut by horizontal lines 
+
+2.4.5
+native library
+- NEW method Page.GetAnnotFieldType 
+- NEW support alpha channel for ink/glyph/rect annotations
+- FIX corrected a specific issue on malformed file: on some circumstances library was crashing
+- FIX corrected bug on selection of radio button annotation
+- FIX corrected bug on bitmap annotation with transparencies
+- FIX issues in PDFV class
+- FIX bug on RichMedia annotation handling
+- FIX fixed stroke line graphic error
+- FIX flush file when saving: now reserved PDF are completely readable from MacOSX Preview
+
+pdfex wrapper
+- FIX corrected bug during zoom in/out with def_mode=4 
+
+2.4.0
+native library
+- ENHANCED cleaned PDFV class with some internal logic aligned to the incoming iOS and WinRT version
+- FIX JPX decoding was broken with some images
+- FIX bug in opening some password encrypted files
+
+
+pdfex wrapper
+- ENHANCED scrolling is smoother than before
+
+demo project
+- ENHANCED built-in PDF file browser
+
+documentation
+- UPDATE documentation of PDFV class and file browser
+
+2.3.0
+native library
+- ENHANCED JPX image decoding. Now is 25% faster than before
+- ENHANCED CMYK -> RGB conversion, faster than before 
+- ENHANCED mask operation is faster
+- ENHANCED overall optimization and library size reduction
+- FIX handling of tiling pattern compose with mask object
+
+2.2.0
+native library
+- NEW optimized JPX decoding
+- NEW optimized image rendering
+- CHANGE Global.ToDIBPoint simpler than before (less parameters and no need to pass DIB object)
+- CHANGE Global.ToPDFPoint simpler than before (less parameters and no need to pass DIB object)
+- CHANGE Global.ToDIBRect simpler than before (less parameters and no need to pass DIB object)
+- CHANGE Global.ToPDFRect simpler than before (less parameters and no need to pass DIB object)
+
+2.1.1b
+native library/JNI
+- FIX object correcting during file save
+
+pdfex wrapper
+- FIX page counter give the right number even with document pages smaller than the screen (on line bug)
+- FIX manage some uncommon tags sequence was belonging to unreadable PDF after a file save
+- FIX page zoom routine optimization 
+
+documentation
+- UPDATE documentation of PDFV class
+
+2.1.0
+native library/JNI
+- NEW new interface to set meta tags (Document.SetMeta/Document.GetMeta)
+- FIX rendering tiling pattern on some circumstances was crashing the library
+- FIX arabic-style font handling
+
+2.0.15b
+native library/JNI
+- NEW new interface fontfileMapping to map font names
+
+pdfex wrapper
+- FIX the crash problem when searching
+
+documentation
+- FIX last version was containing a wrong EULA document (v1.1 instead of v1.2)
+
+
+2.0.15
+native library/JNI
+- NEW convert coordinates
+- FIX wrong buffer management that was producing library crash in some (few) circumstances
+- FIX AddAnnotationEditBox() was getting transformation matrix as integer array
+ 
+pdfex wrapper:
+- FIX viewSetRatio corrected the magnification handling
+- FIX text search wasn't catching results on 1-page documents (again)
+- FIX application resume was crashing the application
+
+2.0.14
+native library/JNI:
+- NEW Page.GetRotate() method to retrieve the actual page angle
+- FIX better memory protection with multi-thread locking
+
+pdfex wrapper:
+- NEW interface to add edit box on page (premium version only)
+- FIX text search wasn't catching results on 1-page documents
+- FIX problems in PDFViewSingleEx.viewSetRatio()
+- FIX crashed bug for PDFViewSingle.onTouchEvent, when the view isn't opened
+
+2.0.12
+native library/JNI:
+- NEW interface for PDFV class (wrap in C/C++).
+- FIX crash bug for edit-box.
+
+pdfex:
+- FIX memory leaks in Single View.
+- FIX some error for viewSetRatio.
+
+documentation:
+- NEW API.html contains full description of APIs and PDFEX methods
+
+2.0.10b
+native library:
+- FIX "toUincode" map was broken and some charset was wrongly decoded
+
+pdfex wrapper:
+- UPDATE generic optimizations
+
+documentation:
+- UPDATE JavaDoc documentation is up to date
+
+2.0.10
+Changed the versioning denomination
+
+native library/JNI:
+- NEW set color of text markup annotation
+- NEW Global.zoomLevel to set the maximum zooming level
+- NEW Page.GetAnnotType() to retrieve the actual annotation type 
+- FIX movie file in Action object are valid now
+- FIX cleaned code in multimedia interface
+
+documentation:
+- UPDATE JavaDoc documentation is up to date
+
+2.09
+native library and JNI:
+- NEW global annotation hiding
+
+pdfex wrapper:
+- FIX null pointer exception in PDFViewSingle.viewDraw method
+- FIX wrong image rendering is some file (i.e.: missing letters)
+- FIX zoom class is smoother
+
+2.08
+native library:
+- FIX bitmap annotation with inverted R and B colour
+
+pdfex wrapper:
+- UPDATE optimizing
+
+documentation:
+- UPDATE javadocs updated with better descriptions
+
+2.07 (and fixes)
+pdfex wrapper:
+- NEW right to left text selection. Look at Global.selRTOL documentation.
+
+native library:
+- FIX JPX image decoding: reproducible misbehaviour when image colorspace was different from PDF colorspace
+- FIX Corrected an issue on "times-roman" Postscript font rendering 
+- UPDATE Improved vertical font management
+
+2.06
+native library:
+- NEW sticky annotation management
+- FIX some minor bugs
+- FIX unexpected exception on Android 4.0 with some PDFs
+ 
+pdfex wrapper:
+- FIX rectangle annotation management (ink and hwriting classes)
+
+2.05
+pdfex wrapper:
+- NEW transparent background support
+
+2.04
+native library:
+- FIX saveAs interface that was crashing in some circumstances
+- FIX normal-quality rendering was introducing a wrong scan line during image rendering
+ 
+demo project:
+- UPDATE the project is updated to last PDFEx interfaces
+- FIX minor bug fixing
+
+2.03
+native library:
+- FIX some issues during asian (vertical) fonts rendering
+ 
+pdfex library:
+- NEW settable annotation transparency color
+- NEW class for better ink annotation both handwritten and rectangular shapes
+
+2.01
+native library:
+- NEW open PDF from byte array
+- NEW can add Bitmap annotation
+- NEW support for three licensing types
+- FIX incorrect cross-reference table position management
+ 
+pdfex library:
+- NEW form editing support - PREMIUM LICENSE - Coming soon!
+- NEW active function renamed
+- NEW add dark mode option in Global class
+- UPDATE java document updated

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.radaee.reader</groupId>
+    <artifactId>pdfviewer-parent</artifactId>
+    <version>2.9.1</version>
+  </parent>
+
+  <artifactId>pdfviewer</artifactId>
+  <packaging>apklib</packaging>
+  <name>PDF Viewer SDK</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>android</groupId>
+      <artifactId>android</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>pdfex_view</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>librdpdf</artifactId>
+      <classifier>armeabi</classifier>
+      <scope>runtime</scope>
+      <type>so</type>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>librdpdf</artifactId>
+      <classifier>armeabi-v7a</classifier>
+      <scope>runtime</scope>
+      <type>so</type>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>librdpdf</artifactId>
+      <classifier>mips</classifier>
+      <scope>runtime</scope>
+      <type>so</type>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>librdpdf</artifactId>
+      <classifier>x86</classifier>
+      <scope>runtime</scope>
+      <type>so</type>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+        <artifactId>android-maven-plugin</artifactId>
+        <version>${android.maven.plugin.version}</version>
+        <inherited>true</inherited>
+        <configuration>
+          <sdk>
+            <platform>${android.sdk.platform}</platform>
+          </sdk>
+          <deleteConflictingFiles>true</deleteConflictingFiles>
+        </configuration>
+        <extensions>true</extensions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.radaee.reader</groupId>
+  <artifactId>pdfviewer-parent</artifactId>
+  <version>2.9.1</version>
+  <packaging>pom</packaging>
+  <name>PDF Viewer SDK Parent</name>
+
+  <properties>
+    <android.sdk.version>4.2_r1</android.sdk.version>
+    <android.sdk.platform>17</android.sdk.platform>
+    <android.maven.plugin.version>3.6.0</android.maven.plugin.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <modules>
+    <module>pdfdeps</module>
+    <module>pdfviewer</module>
+  </modules>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>android</groupId>
+        <artifactId>android</artifactId>
+        <version>${android.sdk.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>pdfex_view</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>librdpdf</artifactId>
+        <version>${project.version}</version>
+        <classifier>armeabi</classifier>
+        <scope>runtime</scope>
+        <type>so</type>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>librdpdf</artifactId>
+        <version>${project.version}</version>
+        <classifier>armeabi-v7a</classifier>
+        <scope>runtime</scope>
+        <type>so</type>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>librdpdf</artifactId>
+        <version>${project.version}</version>
+        <classifier>mips</classifier>
+        <scope>runtime</scope>
+        <type>so</type>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>librdpdf</artifactId>
+        <version>${project.version}</version>
+        <classifier>x86</classifier>
+        <scope>runtime</scope>
+        <type>so</type>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+</project>

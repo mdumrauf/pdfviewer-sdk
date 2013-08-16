@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.radaee.reader</groupId>
   <artifactId>pdfviewer-parent</artifactId>
-  <version>2.9.1</version>
+  <version>2.9.3b</version>
   <packaging>pom</packaging>
   <name>PDF Viewer SDK Parent</name>
 

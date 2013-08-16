@@ -1,15 +1,19 @@
 package com.radaee.pdf;
 
-import android.app.Activity;
-import android.content.ContextWrapper;
-import android.content.res.AssetManager;
-import android.graphics.Bitmap;
-import android.os.Environment;
-import com.radaee.pdfex.PDFRecent;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import com.radaee.pdfex.PDFRecent;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.ContextWrapper;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+//import android.telephony.TelephonyManager;
+//import android.net.wifi.WifiInfo;
+//import android.net.wifi.WifiManager;
+import android.os.Environment;
 
 /**
  * class for Global setting.
@@ -19,12 +23,10 @@ import java.io.InputStream;
  */
 public class Global {
 	private static native void setCMapsPath(String cmaps, String umaps);
-
 	private static native void fontfileListStart();
-
 	private static native void fontfileListAdd(String font_file);
-
 	private static native void fontfileListEnd();
+	private static native void loadStdFont( int index, String path );
 
 	/**
 	 * map a face name to another name.<br/>
@@ -55,7 +57,7 @@ public class Global {
 	 * @param context
 	 *            Context object
 	 * @param company
-	 *            company name, exapmle "com.radaee"
+	 *            company name, exapmle "radaee"
 	 * @param mail
 	 *            address, example "radaee_com@yahoo.cn"
 	 * @param serial
@@ -72,7 +74,7 @@ public class Global {
 	 * @param context
 	 *            Context object
 	 * @param company
-	 *            company name, exapmle "com.radaee"
+	 *            company name, exapmle "radaee"
 	 * @param mail
 	 *            address, example "radaee_com@yahoo.cn"
 	 * @param serial
@@ -89,7 +91,7 @@ public class Global {
 	 * @param context
 	 *            Context object
 	 * @param company
-	 *            company name, exapmle "com.radaee"
+	 *            company name, exapmle "radaee"
 	 * @param mail
 	 *            address, example "radaee_com@yahoo.cn"
 	 * @param serial
@@ -106,7 +108,7 @@ public class Global {
 	 * @param context
 	 *            Context object
 	 * @param company
-	 *            company name, exapmle "com.radaee"
+	 *            company name, exapmle "radaee"
 	 * @param mail
 	 *            mail address, example "radaee_com@yahoo.cn"
 	 * @param dt1
@@ -357,6 +359,8 @@ public class Global {
 																// umaps file
 																// path
 
+        String fonts_path = files.getAbsolutePath() + "/rdf013";
+
 		// create temporary dictionary, to save media or attachment data.
 		File sdDir = Environment.getExternalStorageDirectory();
 		if (Environment.getExternalStorageState().equals(
@@ -433,20 +437,42 @@ public class Global {
 		}
 		sub = null;
 
+		sub = new File(fonts_path);
+		if( !sub.exists() )
+		{
+			try
+	    	{
+				InputStream src = assets.open("rdf013");
+    			FileOutputStream dst = new FileOutputStream( new File(fonts_path) );
+   				while( (read = src.read( buf )) > 0 )
+   					dst.write( buf, 0, read );
+   				dst.close();
+   				src.close();
+   				dst = null;
+   				src = null;
+	    	}
+			catch(Exception e)
+			{
+			}
+		}
+		sub = null;
+
 		buf = null;
 		assets = null;
 
 		// active library, or WaterMark will displayed on each page.
-		// boolean succeeded = activeStandard(act, "com.radaee",
+		// boolean succeeded = activeStandard(act, "radaee",
 		// "radaee_com@yahoo.cn", "HV8A19-WOT9YC-9ZOU9E-OQ31K2-FADG6Z-XEBCAO");
-		// boolean succeeded = activeProfessional( act, "com.radaee",
+		// boolean succeeded = activeProfessional( act, "radaee",
 		// "radaee_com@yahoo.cn", "Z5A7JV-5WQAJY-9ZOU9E-OQ31K2-FADG6Z-XEBCAO" );
-		boolean succeeded = activePremium(act, "com/radaee", "radaee_com@yahoo.cn",
+		boolean succeeded = activePremium(act, "radaee", "radaee_com@yahoo.cn",
 				"LNJFDN-C89QFX-9ZOU9E-OQ31K2-FADG6Z-XEBCAO");
 
 		// set cmaps and umaps data.
 		setCMapsPath(cmaps_path, umaps_path);
 
+		loadStdFont( 13, fonts_path );
+		
 		// add system external fonts.
 		fontfileListStart();
 		fontfileListAdd("/system/fonts/DroidSans.ttf");

@@ -1,13 +1,14 @@
 package com.radaee.util;
 
 import android.util.Log;
-import com.radaee.pdf.Document.PDFStream;
 
+import com.radaee.pdf.Document;
+import com.radaee.pdf.Document.PDFStream;
 import java.io.RandomAccessFile;
 
 /**
  * File stream, an implement class for PDFStream, which used in Document.OpenStream
- * @author com.radaee
+ * @author radaee
  */
 public class PDFFileStream implements PDFStream
 {

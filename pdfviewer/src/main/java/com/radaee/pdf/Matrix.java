@@ -10,6 +10,11 @@ public class Matrix
 	protected int hand = 0;
 	private static native int create( float xx, float yx, float xy, float yy, float x0, float y0 );
 	private static native int createScale( float sx, float sy, float x0, float y0 );
+	private static native void invert( int matrix );
+	private static native void transformPath( int matrix, int path );
+	private static native void transformInk( int matrix, int ink );
+	private static native void transformRect( int matrix, float[] rect );
+	private static native void transformPoint( int matrix, float[] point );
 	private static native void destroy( int matrix );
 	/**
 	 * constructor for full values.
@@ -38,6 +43,26 @@ public class Matrix
 	public Matrix( float sx, float sy, float x0, float y0 )
 	{
 		hand = createScale( sx, sy, x0, y0 );
+	}
+	public void Invert()
+	{
+		invert( hand );
+	}
+	public void TransformPath( Path path )
+	{
+		transformPath( hand, path.m_hand );
+	}
+	public void TransformInk( Ink ink )
+	{
+		transformInk( hand, ink.hand );
+	}
+	public void TransformRect( float[] rect )
+	{
+		transformRect( hand, rect );
+	}
+	public void TransformPoint( float[] point )
+	{
+		transformPoint( hand, point );
 	}
 	/**
 	 * destroy and free memory.

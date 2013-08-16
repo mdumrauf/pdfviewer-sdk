@@ -26,18 +26,18 @@ public class Document
 		 * @param data output values.
 		 * @return bytes read
 		 */
-		public int read(byte[] data);
+		public int read( byte[] data );
 		/**
 		 * write data to stream
 		 * @param data data to write
 		 * @return bytes written
 		 */
-		public int write(byte[] data);
+		public int write( byte[] data );
 		/**
 		 * seek to position
 		 * @param pos position from begin of the stream
 		 */
-		public void seek(int pos);
+		public void seek( int pos );
 		/**
 		 * tell current position
 		 * @return position from begin of the stream
@@ -168,6 +168,7 @@ public class Document
 	private static native boolean setGStateFillAlpha(int hand, int gstate, int alpha);
 	private static native int newImage( int hand, Bitmap bmp, boolean has_alpha );
 	private static native int newImageJPEG( int hand, String path );
+	private static native int newImageJPX( int hand, String path );
 	public class DocFont
 	{
 		protected int hand;
@@ -656,7 +657,10 @@ public class Document
 	}
 	/**
 	 * create an image from JPEG/JPG file.<br/>
-	 * Only RGB or CMYK colored JPEG file can be created.<br/>
+	 * supported image color space:<br/>
+	 * --GRAY<br/>
+	 * --RGB<br/>
+	 * --CMYK<br/>
 	 * a premium license is needed for this method.
 	 * @param path path to JPEG file.
 	 * @return DocImage object or null.
@@ -664,6 +668,23 @@ public class Document
 	public DocImage NewImageJPEG( String path )
 	{
 		int ret = newImageJPEG(hand_val, path);
+		if( ret != 0 )
+		{
+			DocImage img = new DocImage();
+			img.hand = ret;
+			return img;
+		}
+		else return null;
+	}
+	/**
+	 * create an image from JPX/JPEG 2k file.<br/>
+	 * a premium license is needed for this method.
+	 * @param path path to JPX file.
+	 * @return DocImage object or null.
+	 */
+	public DocImage NewImageJPX( String path )
+	{
+		int ret = newImageJPX(hand_val, path);
 		if( ret != 0 )
 		{
 			DocImage img = new DocImage();

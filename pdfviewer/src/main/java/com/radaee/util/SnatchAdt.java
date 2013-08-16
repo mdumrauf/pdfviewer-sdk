@@ -1,4 +1,6 @@
 package com.radaee.util;
+import java.io.File;
+import java.util.Vector;
 
 import android.content.Context;
 import android.database.DataSetObserver;
@@ -9,9 +11,6 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import java.io.File;
-import java.util.Vector;
 
 public class SnatchAdt implements ExpandableListAdapter
 {

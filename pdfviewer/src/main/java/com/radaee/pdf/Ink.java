@@ -2,14 +2,14 @@ package com.radaee.pdf;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Paint.Cap;
-import android.graphics.Paint.Join;
 import android.graphics.Paint.Style;
 import android.graphics.Path;
+import android.graphics.Paint.Cap;
+import android.graphics.Paint.Join;
 
 /**
  * class for ink.
- * @author com.radaee
+ * @author radaee
  *
  */
 public class Ink 
@@ -40,6 +40,7 @@ public class Ink
 	public void Destroy()
 	{
 		destroy( hand );
+		hand = 0;
 	}
 	/**
 	 * call when click down

@@ -1,7 +1,8 @@
 package com.radaee.pdf;
 
-import android.graphics.Bitmap;
 import com.radaee.pdf.Document.*;
+
+import android.graphics.Bitmap;
 
 /**
 class for PDF Page.
@@ -99,6 +100,14 @@ public class Page
 			return Page.isAnnotLockedContent(page.hand, hand);
 		}
 		/**
+		 * check whether the annotation is hide.
+		 * @return true or false.
+		 */
+		public boolean IsHide()
+		{
+			return Page.isAnnotHide(page.hand, hand);
+		}
+		/**
 		 * set annotation's box rectangle.<br/>
 		 * this can be invoked after ObjsStart or Render or RenderToBmp.<br/>
 		 * this method valid in professional or premium version
@@ -113,7 +122,8 @@ public class Page
 		/**
 		 * set annotation's box rectangle.<br/>
 		 * this can be invoked after ObjsStart or Render or RenderToBmp.<br/>
-		 * this method valid in professional or premium version
+		 * this method valid in professional or premium version.<br/>
+		 * you shall render page after this invoked, to resize or move annotation.
 		 */
 		public void SetRect( float left, float top, float right, float bottom )
 		{
@@ -125,9 +135,20 @@ public class Page
 			Page.setAnnotRect(page.hand, hand, rect);
 		}
 		/**
+		 * set hide status for annotation.
+		 * this can be invoked after ObjsStart or Render or RenderToBmp.<br/>
+		 * this method valid in professional or premium version.<br/>
+		 * you shall render page after this invoked, to hide annotation.
+		 * @param hide true or false.
+		 */
+		public void SetHide( boolean hide )
+		{
+			Page.setAnnotHide(page.hand, hand, hide);
+		}
+		/**
 		 * get annotation's popup text.<br/>
 		 * this can be invoked after ObjsStart or Render or RenderToBmp.<br/>
-		 * this method valid in professional or premium version
+		 * this method valid in professional or premium version.
 		 * @return text string or null if failed.
 		 */
 		public String GetPopupText()
@@ -468,7 +489,7 @@ public class Page
 			return Page.setAnnotFillColor(page.hand, hand, color);
 		}
 		/**
-		 * get fill color of square/circle/ink/line/underline/strikeout/ploygon/polyline annotation.<br/>
+		 * get fill color of square/circle/ink/line/underline/Squiggly/strikeout/ploygon/polyline annotation.<br/>
 		 * this can be invoked after ObjsStart or Render or RenderToBmp.<br/>
 		 * this method valid in professional or premium version
 		 * @return color value formatted as 0xAARRGGBB, if 0 returned, means false.
@@ -478,7 +499,7 @@ public class Page
 			return Page.getAnnotStrokeColor(page.hand, hand);
 		}
 		/**
-		 * set stroke color of square/circle/ink/line/underline/strikeout/ploygon/polyline annotation.<br/>
+		 * set stroke color of square/circle/ink/line/underline/Squiggly/strikeout/ploygon/polyline annotation.<br/>
 		 * this can be invoked after ObjsStart or Render or RenderToBmp.<br/>
 		 * you need render page again to show modified annotation.<br/>
 		 * this method valid in professional or premium version
@@ -541,6 +562,114 @@ public class Page
 			return Page.setAnnotInkPath(page.hand, hand, path.m_hand);
 		}
 		/**
+		 * get Path object from Polygon annotation.<br/>
+		 * this can be invoked after ObjsStart or Render or RenderToBmp.<br/>
+		 * this method valid in professional or premium version
+		 * @return a new Path object, you need invoke Path.Destroy() to free memory.
+		 */
+		public Path GetPolygonPath()
+		{
+			int ret = Page.getAnnotPolygonPath(page.hand, hand);
+			if( ret == 0 ) return null;
+			Path path = new Path();
+			path.m_hand = ret;
+			return path;
+		}
+		/**
+		 * set Path to Polygon annotation.<br/>
+		 * this can be invoked after ObjsStart or Render or RenderToBmp.<br/>
+		 * you need render page again to show modified annotation.<br/>
+		 * this method valid in professional or premium version
+		 * @param path Path object.
+		 * @return true or false.
+		 */
+		public boolean SetPolygonPath( Path path )
+		{
+			if( path == null ) return false;
+			return Page.setAnnotPolygonPath(page.hand, hand, path.m_hand);
+		}
+		/**
+		 * get Path object from Polyline annotation.<br/>
+		 * this can be invoked after ObjsStart or Render or RenderToBmp.<br/>
+		 * this method valid in professional or premium version
+		 * @return a new Path object, you need invoke Path.Destroy() to free memory.
+		 */
+		public Path GetPolylinePath()
+		{
+			int ret = Page.getAnnotPolylinePath(page.hand, hand);
+			if( ret == 0 ) return null;
+			Path path = new Path();
+			path.m_hand = ret;
+			return path;
+		}
+		/**
+		 * set Path to Polyline annotation.<br/>
+		 * this can be invoked after ObjsStart or Render or RenderToBmp.<br/>
+		 * you need render page again to show modified annotation.<br/>
+		 * this method valid in professional or premium version
+		 * @param path Path object.
+		 * @return true or false.
+		 */
+		public boolean SetPolylinePath( Path path )
+		{
+			if( path == null ) return false;
+			return Page.setAnnotPolylinePath(page.hand, hand, path.m_hand);
+		}
+		/**
+		 * set icon for sticky text note/file attachment annotation.<br/>
+		 * this can be invoked after ObjsStart or Render or RenderToBmp.<br/>
+		 * you need render page again to show modified annotation.<br/>
+		 * this method valid in professional or premium version
+		 * @param icon icon value depends on annotation type.<br/>
+		 * <strong>For sticky text note:</strong><br/>
+		 * 0: Note<br/>
+		 * 1: Comment<br/>
+		 * 2: Key<br/>
+		 * 3: Help<br/>
+		 * 4: NewParagraph<br/>
+		 * 5: Paragraph<br/>
+		 * 6: Insert<br/>
+		 * 7: Check<br/>
+		 * 8: Circle<br/>
+		 * 9: Cross<br/>
+		 * <strong>For file attachment:</strong><br/>
+		 * 0: PushPin<br/>
+		 * 1: Graph<br/>
+		 * 2: Paperclip<br/>
+		 * 3: Tag<br/>
+		 * @return true or false.
+		 */
+		public boolean SetIcon( int icon )
+		{
+			return Page.setAnnotIcon(page.hand, hand, icon);
+		}
+		/**
+		 * get icon value for sticky text note/file attachment annotation.<br/>
+		 * this can be invoked after ObjsStart or Render or RenderToBmp.<br/>
+		 * this method valid in professional or premium version
+		 * @return icon value depends on annotation type.<br/>
+		 * <strong>For sticky text note:</strong><br/>
+		 * 0: Note<br/>
+		 * 1: Comment<br/>
+		 * 2: Key<br/>
+		 * 3: Help<br/>
+		 * 4: NewParagraph<br/>
+		 * 5: Paragraph<br/>
+		 * 6: Insert<br/>
+		 * 7: Check<br/>
+		 * 8: Circle<br/>
+		 * 9: Cross<br/>
+		 * <strong>For file attachment:</strong><br/>
+		 * 0: PushPin<br/>
+		 * 1: Graph<br/>
+		 * 2: Paperclip<br/>
+		 * 3: Tag<br/>
+		 */
+		public int GetIcon()
+		{
+			return Page.getAnnotInkPath(page.hand, hand);
+		}
+		/**
 		 * remove annotation<br/>
 		 * you should re-render page to display modified data.<br/>
 		 * this can be invoked after ObjsStart or Render or RenderToBmp.<br/>
@@ -583,6 +712,7 @@ public class Page
 		public void Close()
 		{
 			Page.findClose( hand );
+			hand = 0;
 		}
 	}
 	protected int hand = 0;
@@ -591,6 +721,7 @@ public class Page
 	static private native boolean render( int hand, int dib, int matrix, int quality );
 	static private native boolean renderToBmp( int hand, Bitmap bitmap, int matrix, int quality );
 	static private native void renderCancel(int hand);
+	static private native boolean renderThumb(int hand, Bitmap bmp);
 	static private native boolean renderIsFinished(int hand);
 	static private native float reflowStart( int hand, float width, float scale );
 	static private native boolean reflow( int hand, int dib, float orgx, float orgy );
@@ -625,9 +756,11 @@ public class Page
 	static private native int getAnnotFieldType( int hand, int annot );
 	static private native int getAnnotType( int hand, int annot );
 	static private native boolean isAnnotLocked( int hand, int annot );
+	static private native boolean isAnnotHide( int hand, int annot );
 	static private native boolean isAnnotLockedContent( int hand, int annot );
 	static private native void getAnnotRect( int hand, int annot, float[] rect );
 	static private native void setAnnotRect( int hand, int annot, float[] rect );
+	static private native void setAnnotHide( int hand, int annot, boolean hide );
 	static private native String getAnnotPopupText( int hand, int annot );
 	static private native boolean setAnnotPopupText( int hand, int annot, String val );
 	static private native String getAnnotPopupSubject( int hand, int annot );
@@ -664,8 +797,14 @@ public class Page
 	static private native boolean setAnnotStrokeColor( int hand, int annot, int color );
 	static private native float getAnnotStrokeWidth( int hand, int annot );
 	static private native boolean setAnnotStrokeWidth( int hand, int annot, float width );
-	static private native int getAnnotInkPath( int page, int annot );
-	static private native boolean setAnnotInkPath( int page, int annot, int path );
+	static private native int getAnnotInkPath( int hand, int annot );
+	static private native boolean setAnnotInkPath( int hand, int annot, int path );
+	static private native int getAnnotPolygonPath( int hand, int annot );
+	static private native boolean setAnnotPolygonPath( int hand, int annot, int path );
+	static private native int getAnnotPolylinePath( int hand, int annot );
+	static private native boolean setAnnotPolylinePath( int hand, int annot, int path );
+	static private native boolean setAnnotIcon( int hand, int annot, int icon );
+	static private native int getAnnotIcon( int hand, int annot );
 
 	static private native boolean removeAnnot( int hand, int annot );
 	static private native boolean addAnnotHWriting( int hand, int matrix, int hwriting, float orgx, float orgy );
@@ -676,12 +815,21 @@ public class Page
 	static private native boolean addAnnotEllipse( int hand, int matrix, float[] rect, float width, int color, int fill_color );
 	static private native boolean addAnnotEditbox( int hand, int matrix, float[] rect, float tsize, int color );
 	static private native boolean addAnnotMarkup( int hand, int matrix, float[] rects, int color, int type );
+
+	static private native boolean addAnnotInk2( int hand, int ink );
+	static private native boolean addAnnotLine2( int hand, float[] pt1, float[] pt2, int style1, int style2, float width, int color, int icolor );
+	static private native boolean addAnnotRect2( int hand, float[] rect, float width, int color, int fill_color );
+	static private native boolean addAnnotEllipse2( int hand, float[] rect, float width, int color, int fill_color );
+	static private native boolean addAnnotEditbox2( int hand, float[] rect, float tsize, int color );
 	static private native boolean addAnnotMarkup2( int hand, int cindex1, int cindex2, int color, int type );
 	static private native boolean addAnnotBitmap( int hand, Bitmap bitmap, boolean has_alpha, float[] rect );
+	static private native boolean addAnnotAttachment( int hand, String path, int icon, float[] rect );
 	static private native boolean addAnnotText( int hand, float[] pt );
 	static private native boolean addAnnotGoto( int hand, float[] rect, int pageno, float top );
 	static private native boolean addAnnotURI( int hand, float[] rect, String uri );
-	
+	static private native boolean addAnnotPolygon( int hand, int path, int color, int fill_color, float width );
+	static private native boolean addAnnotPolyline( int hand, int path, int style1, int style2, int color, int fill_color, float width );
+
 	static private native int addResFont( int hand, int font );
 	static private native int addResImage( int hand, int image );
 	static private native int addResGState( int hand, int gstate );
@@ -738,6 +886,16 @@ public class Page
 	public void RenderCancel()
 	{
 		renderCancel( hand );
+	}
+	/**
+	 * render thumb image to Bitmap object.<br/>
+	 * the image always scale and displayed in center of Bitmap.<br/>
+	 * @param bmp Bitmap to render
+	 * @return true if the page has thumb image, or false.
+	 */
+	public boolean RenderThumb(Bitmap bmp)
+	{
+		return renderThumb(hand, bmp);
 	}
 	/**
 	 * check if page rendering is finished.
@@ -899,7 +1057,7 @@ public class Page
 	 * this can be invoked after ObjsStart or Render or RenderToBmp.<br/>
 	 * this method valid in professional or premium version
 	 * @param rect link area rect [left, top, right, bottom] in PDF coordinate.
-	 * @param uri url address, example: "http://www.com.radaee.com/en"
+	 * @param uri url address, example: "http://www.radaee.com/en"
 	 * @return true or false
 	 */
 	public boolean AddAnnotURI( float[] rect, String uri )
@@ -985,7 +1143,7 @@ public class Page
 	 * 6: Diamond<br/>
 	 * 7: Reverted Arrow<br/>
 	 * 8: Reverted Closed Arrow<br/>
-	 * 9: Splash
+	 * 9: Slash
 	 * @param style2 style for end point, values are same as style1.
 	 * @param width line width in DIB coordinate
 	 * @param color line color. same as addAnnotRect.
@@ -1027,7 +1185,134 @@ public class Page
 		int color = 0xFFFFFF00;//yellow
 		if( type == 1 ) color = 0xFF0000C0;//black blue
 		if( type == 2 ) color = 0xFFC00000;//black red
+		if( type == 2 ) color = 0xFF00C000;//black green
 		return addAnnotMarkup( hand, mat.hand, rects, color, type );
+	}
+	/**
+	 * add hand-writing to page.<br/>
+	 * you should re-render page to display modified data.<br/>
+	 * this can be invoked after ObjsStart or Render or RenderToBmp.<br/>
+	 * this method valid in professional or premium version
+	 * @param ink Ink object in PDF coordinate.
+	 * @return true or false.
+	 */
+	public boolean AddAnnotInk( Ink ink )
+	{
+		return addAnnotInk2( hand, ink.hand );
+	}
+	/**
+	 * add line to page.<br/>
+	 * you should re-render page to display modified data.<br/>
+	 * this can be invoked after ObjsStart or Render or RenderToBmp.<br/>
+	 * this method valid in professional or premium version
+	 * @param pt1 start point in PDF coordinate, 2 elements for x,y
+	 * @param pt2 end point in PDF coordinate, 2 elements for x,y
+	 * @param style1 style for start point:<br/>
+	 * 0: None<br/>
+	 * 1: Arrow<br/>
+	 * 2: Closed Arrow<br/>
+	 * 3: Square<br/>
+	 * 4: Circle<br/>
+	 * 5: Butt<br/>
+	 * 6: Diamond<br/>
+	 * 7: Reverted Arrow<br/>
+	 * 8: Reverted Closed Arrow<br/>
+	 * 9: Slash
+	 * @param style2 style for end point, values are same as style1.
+	 * @param width line width in DIB coordinate
+	 * @param color line color. same as addAnnotRect.
+	 * @param fill_color fill color. same as addAnnotRect.
+	 * @return true or false.
+	 */
+	public boolean AddAnnotLine( float[] pt1, float[] pt2, int style1, int style2, float width, int color, int icolor )
+	{
+		return addAnnotLine2( hand, pt1, pt2, style1, style2, width, color, icolor );
+	}
+	/**
+	 * add rectangle to page.<br/>
+	 * you should re-render page to display modified data.<br/>
+	 * this can be invoked after ObjsStart or Render or RenderToBmp.<br/>
+	 * this method valid in professional or premium version
+	 * @param rect 4 elements for left, top, right, bottom in PDF coordinate system
+	 * @param width line width in PDF coordinate.
+	 * @param color rectangle color, formated as 0xAARRGGBB
+	 * @param fill_color fill color in rectangle, formated as 0xAARRGGBB, if alpha channel is 0, means no fill operation, otherwise alpha channel are ignored.
+	 * @return true or false
+	 */
+	public boolean AddAnnotRect( float[] rect, float width, int color, int fill_color )
+	{
+		return addAnnotRect2( hand, rect, width, color, fill_color );
+	}
+	/**
+	 * add ellipse to page.<br/>
+	 * you should re-render page to display modified data.<br/>
+	 * this can be invoked after ObjsStart or Render or RenderToBmp.<br/>
+	 * this method valid in professional or premium version
+	 * @param rect 4 elements for left, top, right, bottom in PDF coordinate system
+	 * @param width line width in PDF coordinate
+	 * @param color ellipse color, formated as 0xAARRGGBB
+	 * @param fill_color fill color in ellipse, formated as 0xAARRGGBB, if alpha channel is 0, means no fill operation, otherwise alpha channel are ignored.
+	 * @return true or false
+	 */
+	public boolean AddAnnotEllipse( float[] rect, float width, int color, int fill_color )
+	{
+		return addAnnotEllipse2( hand, rect, width, color, fill_color );
+	}
+	/**
+	 * add an edit-box on page. the edit-box has no border and background.
+	 * the font of edit box is set by Global.setTextFont in Global.Init().
+	 * this can be invoked after ObjsStart or Render or RenderToBmp.<br/>
+	 * this method valid in premium version.
+	 * @param rect 4 elements: left, top, right, bottom in PDF coordinate system.
+	 * @param tsize text size in DIB coordinate system.
+	 * @param color text color, formated as 0xAARRGGBB.
+	 * @return
+	 */
+	public boolean AddAnnotEditbox( float[] rect, float tsize, int color )
+	{
+		return addAnnotEditbox2( hand, rect, tsize, color );
+	}
+	/**
+	 * add polygon to page.<br/>
+	 * you should re-render page to display modified data.<br/>
+	 * this can be invoked after ObjsStart or Render or RenderToBmp.<br/>
+	 * this method valid in professional or premium version
+	 * @param path must be a closed contour.
+	 * @param color stroke color formated as 0xAARRGGBB.
+	 * @param fill_color fill color, formated as 0xAARRGGBB. if AA == 0, no fill operations, otherwise alpha value is same to stroke color. 
+	 * @param width stroke width in PDF coordinate
+	 * @return true or false.
+	 */
+	public boolean AddAnnotPolygon( Path path, int color, int fill_color, float width )
+	{
+		return addAnnotPolygon( hand, path.m_hand, color, fill_color, width );
+	}
+	/**
+	 * add polyline to page.<br/>
+	 * you should re-render page to display modified data.<br/>
+	 * this can be invoked after ObjsStart or Render or RenderToBmp.<br/>
+	 * this method valid in professional or premium version
+	 * @param path must be a set of unclosed lines. do not container any move-to operation except the first point in the path.
+	 * @param style1 style for start point:<br/>
+	 * 0: None<br/>
+	 * 1: Arrow<br/>
+	 * 2: Closed Arrow<br/>
+	 * 3: Square<br/>
+	 * 4: Circle<br/>
+	 * 5: Butt<br/>
+	 * 6: Diamond<br/>
+	 * 7: Reverted Arrow<br/>
+	 * 8: Reverted Closed Arrow<br/>
+	 * 9: Slash
+	 * @param style2 style for end point, values are same as style1.
+	 * @param color stroke color formated as 0xAARRGGBB.
+	 * @param fill_color fill color, formated as 0xAARRGGBB. if AA == 0, no fill operations, otherwise alpha value is same to stroke color. 
+	 * @param width stroke width in PDF coordinate
+	 * @return true or false.
+	 */
+	public boolean AddAnnotPolyline( Path path, int style1, int style2, int color, int fill_color, float width )
+	{
+		return addAnnotPolyline( hand, path.m_hand, style1, style2, color, fill_color, width );
 	}
 	/**
 	 * add a text-markup annotation to page.<br/>
@@ -1036,7 +1321,12 @@ public class Page
 	 * this method valid in professional or premium version
 	 * @param cindex1 first char index
 	 * @param cindex2 second char index
-	 * @param type 0: Highlight, 1: Underline, 2: StrikeOut, 3: Highlight without round corner.
+	 * @param type type as following:<br/>
+	 * 0: Highlight<br/>
+	 * 1: Underline<br/>
+	 * 2: StrikeOut<br/>
+	 * 3: Highlight without round corner<br/>
+	 * 4: Squiggly underline.
 	 * @return true or false.
 	 */
 	public boolean AddAnnotMarkup( int cindex1, int cindex2, int type )
@@ -1044,6 +1334,7 @@ public class Page
 		int color = 0xFFFFFF00;//yellow
 		if( type == 1 ) color = 0xFF0000C0;//black blue
 		if( type == 2 ) color = 0xFFC00000;//black red
+		if( type == 4 ) color = 0xFF00C000;//black green
 		return addAnnotMarkup2( hand, cindex1, cindex2, color, type );
 	}
 	/**
@@ -1059,6 +1350,24 @@ public class Page
 	public boolean AddAnnotBitmap( Bitmap bitmap, boolean has_alpha, float[] rect )
 	{
 		return addAnnotBitmap( hand, bitmap, has_alpha, rect );
+	}
+	/**
+	 * add a file as an attachment to page.<br/>
+	 * you should re-render page to display modified data.<br/>
+	 * this can be invoked after ObjsStart or Render or RenderToBmp.<br/>
+	 * this method valid in professional or premium version
+	 * @param path absolute path name to the file.
+	 * @param icon icon display to the page. values as:<br/>
+	 * 0: PushPin<br/>
+	 * 1: Graph<br/>
+	 * 2: Paperclip<br/>
+	 * 3: Tag<br/>
+	 * @param rect 4 elements: left, top, right, bottom in PDF coordinate system.
+	 * @return true or false.
+	 */
+	public boolean AddAnnotAttachment(String path, int icon, float[] rect)
+	{
+		return addAnnotAttachment( hand, path, icon, rect );
 	}
 	/**
 	 * add a sticky text annotation to page.<br/>

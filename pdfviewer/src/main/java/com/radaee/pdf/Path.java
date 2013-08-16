@@ -70,6 +70,7 @@ public class Path
 	public void Destroy()
 	{
 		destroy(m_hand);
+		m_hand = 0;
 	}
 	public int GetNodeCount()
 	{

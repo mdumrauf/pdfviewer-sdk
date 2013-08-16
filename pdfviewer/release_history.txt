@@ -1,5 +1,60 @@
 PDFViewer SDK for Android - Release notes
 
+2.9.3b
+FIX http://www.androidpdf.mobi/?option=com_j2mantis&view=showbug&bugid=SlA=&Itemid=560
+FIX http://www.androidpdf.mobi/?option=com_j2mantis&view=showbug&bugid=SlE=&Itemid=560
+FIX http://www.androidpdf.mobi/?option=com_j2mantis&view=showbug&bugid=RVg=&Itemid=560
+FIX http://www.androidpdf.mobi/?option=com_j2mantis&view=showbug&bugid=RVk=&Itemid=560
+
+2.9.3
+native library
+- NEW interface to get/set icon for text/file attachment annotation
+- NEW interface to add polygon/polyline annotations
+- NEW interface to get/set path object from polygon/polyline annotation
+- NEW interface to get/set Squiggly underline annotation
+- NEW support more fonts for NewFontCID
+- NEW new interface to add embedded jpeg 2k image in document (Document.NewImageJPX)
+- NEW new interface to add a file as attachment to the page (Page.AddAnnotAttachment())
+- NEW new interface to get/set annotation hidden status.
+- NEW new interface to render Thumb image for page if exist.
+- NEW right to left document thumbnail support
+- ENHANCED reduce much memory used while JPX decoding.
+- ENHANCED java-doc updated.
+- ENHANCED remove PDFV class and native interfaces.
+- ENHANCED display page NO. on thumbview.
+- ENHANCED update thumbview when a page modified.
+- FIX issue while navigating in Dual mode using thumb view.
+- FIX bug in cross reference table handling in some PDF-1.3/1.4 files
+- FIX rendering issue of some big JPX images
+- FIX some issue in JPX decoding
+- FIX minor bug in cache handling
+- FIX issue with overlapped annotations. (To edit an anootation first select the annotation using a simple touch, then click the edit button)
+- FIX show a check mark when a check box is edited, instead of (4)
+ 
+demo project
+- NEW move annotation in PDFReader class
+- NEW added ZapfsGEAR font. It's a not complete substitute of commercial Zapfs Dingbat. The font is useful to render form fields like checkboxes.
+
+documentation
+- UPDATE javadocs documentation aligned to new methods
+
+2.9.2
+native library
+
+2.9.1cbeta2
+native library
+- FIX an issue while generating PDF.
+- FIX issue with out of memory.
+
+2.9.1cbeta1
+native library
+- FIX not definitive fix for an issue while compressing the content stream to the page object.
+
+2.9.1b
+native library
+-FIX coordinate error in java codes for line annotation.
+-FIX issue with PDFs that has a blank character before each stream data.
+
 2.9.1
 native library
 - FIX issue in text fields editing.

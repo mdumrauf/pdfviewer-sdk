@@ -1,17 +1,18 @@
 package com.radaee.reader;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Bitmap.Config;
-import android.graphics.Canvas;
-import android.util.AttributeSet;
-import android.view.View;
 import com.radaee.pdf.*;
 import com.radaee.util.PDFFileStream;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Bitmap.Config;
+import android.util.AttributeSet;
+import android.view.View;
+
 /**
  * simplest PDF sample.
- * @author com.radaee
+ * @author radaee
  */
 public class PDFSimple extends View
 {

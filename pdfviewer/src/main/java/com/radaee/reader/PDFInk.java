@@ -1,5 +1,5 @@
 package com.radaee.reader;
-
+import com.radaee.pdf.*;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -7,7 +7,6 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import com.radaee.pdf.*;
 
 /**
  * test view<br/>

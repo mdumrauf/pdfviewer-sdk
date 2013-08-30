@@ -303,6 +303,16 @@ public class Page
 			return Page.getAnnotEditType(page.hand, hand);
 		}
 		/**
+		 * get max-len of edit-box.<br/>
+		 * this can be invoked after ObjsStart or Render or RenderToBmp.<br/>
+		 * this method valid in premium version
+		 * @return 0 if no limit, great than 0 if has limit.
+		 */
+		public int GetEditMaxlen()
+		{
+			return Page.getAnnotEditMaxlen(page.hand, hand);
+		}
+		/**
 		 * get position and size of edit-box.<br/>
 		 * for FreeText annotation, position of edit-box is not the position of annotation.<br/>
 		 * so this function is needed for edit-box.
@@ -776,6 +786,7 @@ public class Page
 	static private native boolean getAnnotSoundData( int hand, int annot, int paras[], String save_file );
 	static private native boolean getAnnotAttachmentData( int hand, int annot, String save_file );
 	static private native int getAnnotEditType( int hand, int annot );
+	static private native int getAnnotEditMaxlen( int hand, int annot );
 	static private native boolean getAnnotEditTextRect( int hand, int annot, float[] rect );
 	static private native float getAnnotEditTextSize( int hand, int annot );
 	static private native String getAnnotEditText( int hand, int annot );

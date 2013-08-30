@@ -22,6 +22,7 @@ import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.RectF;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -280,6 +281,11 @@ public class PDFReader extends View implements PDFViewListener, OnItemClickListe
 						edit.setInputType(InputType.TYPE_CLASS_TEXT + InputType.TYPE_TEXT_VARIATION_NORMAL);
 						break;
 					}
+					int maxlen = m_annot.GetEditMaxlen();
+					if( maxlen > 0 )
+						edit.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxlen)});
+					else
+						edit.setFilters(new InputFilter[]{new InputFilter.LengthFilter(1020)});
 					edit.setText(m_annot.GetEditText());
 					m_edit_type = 1;
 					m_pEdit.showAtLocation(this, Gravity.NO_GRAVITY, (int)m_annot_rect[0] + location[0], (int)m_annot_rect[1] + location[1]);

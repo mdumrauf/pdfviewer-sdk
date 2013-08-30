@@ -1188,7 +1188,7 @@ public class PDFReader extends View implements PDFViewListener, OnItemClickListe
 	}
 	public void PDFGotoPage(int pageno)
 	{
-		if( m_view.vGetWinH() <= 0 || m_view.vGetWinW() <= 0 )
+		if( m_view == null || m_view.vGetWinH() <= 0 || m_view.vGetWinW() <= 0 )
 			m_goto_pageno = pageno;
 		else
 		{

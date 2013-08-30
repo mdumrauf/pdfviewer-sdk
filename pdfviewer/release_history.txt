@@ -1,5 +1,13 @@
 PDFViewer SDK for Android - Release notes
 
+2.9.3d
+FIX http://www.androidpdf.mobi/forum/Android-development/253-bmdatabase-how-to-use
+FIX issues with hand written annotation taking on a password protected PDF
+
+2.9.3c
+FIX from http://www.androidpdf.mobi/forum/Application-adopting-PDFViewer-SDK/1061-pdf-pages-start-from-rtl
+FIX from http://www.androidpdf.mobi/forum/Android-development/1034-cyrillic-characters-shown-as-squares
+
 2.9.3b
 FIX http://www.androidpdf.mobi/?option=com_j2mantis&view=showbug&bugid=SlA=&Itemid=560
 FIX http://www.androidpdf.mobi/?option=com_j2mantis&view=showbug&bugid=SlE=&Itemid=560

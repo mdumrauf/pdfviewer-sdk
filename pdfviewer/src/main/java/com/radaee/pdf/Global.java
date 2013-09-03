@@ -326,6 +326,18 @@ public class Global {
 	public static boolean need_time_span = true;
 
 	/**
+	 * License Authentication
+	 */
+	public static enum LicenseType {
+        STANDARD, PROFESSIONAL, PREMIUM
+    };
+    public static LicenseType licenseType = LicenseType.STANDARD;
+
+	public static String company = "radaee";
+	public static String email = "radaee_com@yahoo.cn";
+	public static String key = "HV8A19-WOT9YC-9ZOU9E-OQ31K2-FADG6Z-XEBCAO";
+
+	/**
 	 * global initialize function. it load JNI library and write some data to
 	 * memory.
 	 * 
@@ -461,12 +473,22 @@ public class Global {
 		assets = null;
 
 		// active library, or WaterMark will displayed on each page.
-		// boolean succeeded = activeStandard(act, "radaee",
-		// "radaee_com@yahoo.cn", "HV8A19-WOT9YC-9ZOU9E-OQ31K2-FADG6Z-XEBCAO");
-		// boolean succeeded = activeProfessional( act, "radaee",
-		// "radaee_com@yahoo.cn", "Z5A7JV-5WQAJY-9ZOU9E-OQ31K2-FADG6Z-XEBCAO" );
-		boolean succeeded = activePremium(act, "radaee", "radaee_com@yahoo.cn",
-				"LNJFDN-C89QFX-9ZOU9E-OQ31K2-FADG6Z-XEBCAO");
+		final boolean succeeded;
+
+		switch (licenseType) {
+			case STANDARD:
+				succeeded = activeStandard(act, company, email, key);
+				break;
+			case PROFESSIONAL:
+				succeeded = activeProfessional(act, company, email, key);
+				break;
+			case PREMIUM:
+				succeeded = activePremium(act, company, email, key);
+				break;
+			default:
+				succeeded = activeStandard(act, company, email, key);
+				break;
+		}
 
 		// set cmaps and umaps data.
 		setCMapsPath(cmaps_path, umaps_path);
